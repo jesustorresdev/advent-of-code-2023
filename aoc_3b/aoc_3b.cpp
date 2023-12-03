@@ -20,7 +20,6 @@ namespace aoc
         int id = 0;
         int first = 0;
         int last = 0;
-        bool already_valid = false;
 
         part_number() = default;
         part_number(int id, int first, int last)
@@ -80,25 +79,29 @@ int main(int argc, char* argv[])
 {
     auto [symbols, numbers] = aoc::read_input("data/input.txt");
 
-    std::vector<int> valid_numbers;
+    int sum = 0;
     for (auto& symbol : symbols)
     {
-        assert(symbol.row != 0 && symbol.row != numbers.size() - 1);
-        
+        if (symbol.ch != '*') continue;
+
+        std::vector<int> gears;
         for (int row = symbol.row - 1; row <= symbol.row + 1; ++row)
         {
             for (auto& number: numbers[row])
             {
-                if (!number.already_valid && (symbol.col >= (number.first - 1) && symbol.col <= (number.last + 1)))
+                if (symbol.col >= (number.first - 1) && symbol.col <= (number.last + 1))
                 {
-                    number.already_valid = true;
-                    valid_numbers.push_back(number.id);
+                    gears.push_back(number.id);
                 }
             }
         }
+
+        if (gears.size() == 2)
+        {
+            sum += gears[0] * gears[1];
+        }
     }
 
-    int sum = std::accumulate(valid_numbers.begin(), valid_numbers.end(), 0);
     std::print(std::cout, "ANSWER: {}\n", sum);
     
     return 0;
