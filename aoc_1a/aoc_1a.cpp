@@ -1,8 +1,4 @@
-#include <fstream>
-#include <iostream>
-#include <locale>
-#include <string>
-#include <ranges>
+import std;
 
 int main(int argc, char* argv[])
 {

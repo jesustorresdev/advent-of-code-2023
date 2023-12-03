@@ -1,11 +1,6 @@
-#include <algorithm>
 #include <cassert>
-#include <fstream>
-#include <iostream>
-#include <locale>
-#include <string>
-#include <ranges>
-#include <vector>
+
+import std;
 
 using namespace std::literals;
 

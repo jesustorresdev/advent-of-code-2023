@@ -1,11 +1,6 @@
 #include <cassert>
-#include <fstream>
-#include <iostream>
-#include <regex>
-#include <string>
-#include <string_view>
-#include <vector>
-#include <ranges>
+
+import std;
 
 namespace aoc
 {
