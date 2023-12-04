@@ -45,7 +45,7 @@ namespace aoc
             
             numbers.emplace_back();
 
-            for (int i = 0; i < line.size(); ++i)
+            for (auto i = 0; i < line.size(); ++i)
             {
                 char ch = line[i];
                 
@@ -53,7 +53,8 @@ namespace aoc
                 
                 if (std::ispunct(ch))
                 {
-                    symbols.emplace_back(ch, numbers.size() - 1, i);
+                    int row = static_cast<int>(numbers.size() - 1);
+                    symbols.emplace_back(ch, row, i);
                 }
                 else if (std::isdigit(ch))
                 {
