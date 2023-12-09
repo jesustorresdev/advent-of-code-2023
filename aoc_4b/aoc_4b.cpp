@@ -8,7 +8,7 @@ int to_int(const std::string_view str) {
     return value;
 };
 
-void update_won_cards(std::vector<int>& won_cards, int current_card, int num_of_won_cards)
+void update_won_cards(std::vector<int>& won_cards, int current_card, std::uint64_t num_of_won_cards)
 {
     for (int next_card = current_card; next_card <= current_card + num_of_won_cards; ++next_card)
     {
@@ -56,7 +56,7 @@ int main(int argc, char* argv[])
             | std::views::drop(1)
             | std::views::transform(to_int);
 
-        int num_of = std::ranges::distance(winning_numbers | std::views::filter([&numbers](auto&& winnum)
+        std::uint64_t num_of = std::ranges::distance(winning_numbers | std::views::filter([&numbers](auto&& winnum)
         {
             return std::ranges::contains(numbers, winnum);
         }));

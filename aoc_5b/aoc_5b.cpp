@@ -6,13 +6,6 @@ constexpr double EPSILON = 0.0001f;
 int main(int argc, char* argv[])
 {
     std::ifstream input_file("data/input.txt");
- 
-    auto to_int = [](auto&& str)
-    {
-        // int value;
-        // std::from_chars(str.data(), str.data() + str.size(), value);
-        return 1;
-    };
 
     std::string time_line;
     std::getline(input_file, time_line);

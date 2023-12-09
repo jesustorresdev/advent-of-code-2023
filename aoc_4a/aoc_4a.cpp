@@ -8,11 +8,26 @@ int to_int(const std::string_view str) {
     return value;
 };
 
+std::uint64_t pow(std::uint64_t base, std::uint64_t exp)
+{
+    std::uint64_t result = 1;
+    while (exp)
+    {
+        if (exp & 1)
+        {
+            result *= base;
+        }
+        exp >>= 1;
+        base *= base;
+    }
+    return result;
+}
+
 int main(int argc, char* argv[])
 {
     std::ifstream input_file("data/input.txt");
 
-    int result = 0;
+    std::uint64_t result = 0;
     while (input_file)
     {
         std::string line;
@@ -40,12 +55,12 @@ int main(int argc, char* argv[])
             | std::views::drop(1)
             | std::views::transform(to_int);
 
-        int num_of = std::ranges::distance(winning_numbers | std::views::filter([&numbers](auto&& winnum)
+        std::uint64_t num_of = std::ranges::distance(winning_numbers | std::views::filter([&numbers](auto&& winnum)
         {
             return std::ranges::contains(numbers, winnum);
         }));
         
-        result += std::pow(2, num_of - 1);
+        result += pow(2, num_of - 1);
     }
 
     std::print(std::cout, "ANSWER: {}\n", result);

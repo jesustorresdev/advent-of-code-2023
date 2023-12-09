@@ -7,22 +7,22 @@ namespace aoc
     struct symbol
     {
         char ch = '\0';
-        int row = 0;
-        int col = 0;
+        std::size_t row = 0;
+        std::size_t col = 0;
 
         symbol() = default;
-        symbol(char ch, int row, int col)
+        symbol(char ch, std::size_t row, std::size_t col)
             : ch(ch), row(row), col(col) {}
     };
 
     struct part_number
     {
         int id = 0;
-        int first = 0;
-        int last = 0;
+        std::size_t first = 0;
+        std::size_t last = 0;
 
         part_number() = default;
-        part_number(int id, int first, int last)
+        part_number(int id, std::size_t first, std::size_t last)
             : id(id), first(first), last(last) {}
     };
     
@@ -44,7 +44,7 @@ namespace aoc
             
             numbers.emplace_back();
 
-            for (int i = 0; i < line.size(); ++i)
+            for (std::size_t i = 0; i < line.size(); ++i)
             {
                 char ch = line[i];
                 
@@ -59,8 +59,8 @@ namespace aoc
                     std::size_t number_size = 0;
                     int number = std::stoi(line.substr(i), &number_size);
                     
-                    int first = i;
-                    i += static_cast<int>(number_size) - 1;
+                    std::size_t first = i;
+                    i += number_size - 1;
                     
                     numbers.back().emplace_back(number, first, i);
                 }
@@ -85,7 +85,7 @@ int main(int argc, char* argv[])
         if (symbol.ch != '*') continue;
 
         std::vector<int> gears;
-        for (int row = symbol.row - 1; row <= symbol.row + 1; ++row)
+        for (std::size_t row = symbol.row - 1; row <= symbol.row + 1; ++row)
         {
             for (auto& number: numbers[row])
             {
